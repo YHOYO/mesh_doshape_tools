@@ -29,7 +29,7 @@ bl_info = {
  "description": "Selected Vertex By Face Side",  
  "warning": "",  
  "wiki_url": "https://wiki.blender.org/index.php/Extensions:2.6/Py/Scripts/Modeling/selected_vertex_by_face_side",  
- "tracker_url": "",  
+ "tracker_url": "https://github.com/YHOYO/mesh_doshape_tools/blob/master/select%20vertex%20by%20plane%20side.py",  
  "category": "Doshape"} 
 
 import bpy
