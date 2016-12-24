@@ -21,16 +21,16 @@ END GPL LICENCE BLOCK
 '''
 
 bl_info = {  
- "name": "Selected Vertex By Face Side",  
+ "name": "Selected Vertex By Plane Side",  
  "author": "Diego Quevedo ( http://doshape.com/ )",  
  "version": (1, 0),  
  "blender": (2, 7 , 3),  
  "location": "View3D > EditMode > Select",  
- "description": "Selected Vertex By Face Side",  
+ "description": "Selected Vertex By Plane Side",  
  "warning": "",  
- "wiki_url": "https://wiki.blender.org/index.php/Extensions:2.6/Py/Scripts/Modeling/selected_vertex_by_face_side",  
- "tracker_url": "https://github.com/YHOYO/mesh_doshape_tools/blob/master/select%20vertex%20by%20plane%20side.py",  
- "category": "Doshape"} 
+ "wiki_url": "https://wiki.blender.org/index.php/Extensions:2.6/Py/Scripts/Modeling/selected_vertex_by_plane_side",  
+ "tracker_url": "https://github.com/YHOYO/mesh_doshape_tools/blob/master/select%20vertex%20by%20plane%20side.py",  ,  
+  "category": "Doshape"} 
 
 import bpy
 import bmesh
@@ -46,7 +46,7 @@ def shortcut(activar):
         wm = bpy.context.window_manager
         km = wm.keyconfigs.addon.keymaps.new(name='3D View', space_type='VIEW_3D')
 
-        kmi = km.keymap_items.new(SelectedVertexByFaceSideOperator.bl_idname, 'RIGHTMOUSE', 'CLICK', any=False, shift=True, ctrl=True, alt=False, oskey=False, key_modifier='NONE', head=False)
+        kmi = km.keymap_items.new(SelectedVertexByPlaneSideOperator.bl_idname, 'Q', 'ANY', any=False, shift=False, ctrl=False, alt=True, oskey=False, key_modifier='NONE', head=False)
         
         addon_keymaps.append((km, kmi))
     else:
@@ -57,10 +57,10 @@ def shortcut(activar):
         addon_keymaps.clear()
 
         
-class SelectedVertexByFaceSideOperator(bpy.types.Operator):
-    "Selected Vertex By Face Side"
-    bl_idname = 'mesh.selected_vertex_by_face_side'
-    bl_label = 'Select vertex by face side'
+class SelectedVertexByPlaneSideOperator(bpy.types.Operator):
+    "Selected Vertex By Plane Side"
+    bl_idname = 'mesh.selected_vertex_by_plane_side'
+    bl_label = 'Select vertex by Plane side'
     bl_description  = "allow select vertex in any side of plane"
     bl_options = {'REGISTER', 'UNDO'}
     
@@ -84,8 +84,6 @@ class SelectedVertexByFaceSideOperator(bpy.types.Operator):
 
 
     def main(self, context, chboxiniciales, chboxcoplanares, chboxladoa, chboxladob):
-        
-        # creo la nueva transformacion, activo la rotacion por el 3d cursor y llevo el cursor a esa parte
         
         #print("#"*50)
         #me cambio a modo vertices
@@ -171,14 +169,14 @@ class SelectedVertexByFaceSideOperator(bpy.types.Operator):
     
     
 def menu_draw(self, context):
-        self.layout.operator(SelectedVertexByFaceSideOperator.bl_idname)
+        self.layout.operator(SelectedVertexByPlaneSideOperator.bl_idname)
 
         
 
 
                  
 '''    
-class SelectedVertexByFaceSideOperatorPanel(bpy.types.Panel):
+class SelectedVertexByPlaneSideOperatorPanel(bpy.types.Panel):
 	#bl_category = "Bisector"
     bl_space_type = "VIEW_3D"
     bl_region_type = "TOOLS"
@@ -193,7 +191,7 @@ class SelectedVertexByFaceSideOperatorPanel(bpy.types.Panel):
         layout = self.layout
  
         row = layout.row(align=True)
-        row.operator(SelectedVertexByFaceSideOperator.bl_idname) #line Triangle from two vertices
+        row.operator(SelectedVertexByPlaneSideOperator.bl_idname) #line Triangle from two vertices
         
 '''     
     
